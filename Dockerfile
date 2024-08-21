@@ -1,5 +1,5 @@
 # Stage 1: Build stage with secret to download the model
-FROM python:3.11-slim as builder
+FROM python:3.12-slim as builder
 
 WORKDIR /app
 
@@ -16,7 +16,7 @@ RUN huggingface-cli login --token $HF_AUTH_TOKEN
 RUN huggingface-cli download microsoft/Phi-3-mini-4k-instruct-gguf Phi-3-mini-4k-instruct-q4.gguf --local-dir . --local-dir-use-symlinks False
 
 # Stage 2: Final image without secrets
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 
